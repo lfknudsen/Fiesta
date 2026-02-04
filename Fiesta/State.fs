@@ -5,7 +5,7 @@ open System
 /// Holds the state of this programme and encapsulates functionality
 /// related to its members.
 /// Mostly used to be able to print results in a useful manner.
-type TestState(config: Arguments.Config) =
+type public TestState(config: Arguments.Config) =
     class
         /// The number of successful tests.
         let mutable _successes = 0u
