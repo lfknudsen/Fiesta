@@ -1,4 +1,4 @@
-module fiesta.Arguments
+module Fiesta.Arguments
 
 /// Struct for holding command-line argument information.
 type Config() =

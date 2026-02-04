@@ -1,4 +1,4 @@
-module fiesta.State
+module Fiesta.State
 
 open System
 

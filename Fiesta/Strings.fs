@@ -1,5 +1,5 @@
 (* A few utility functions. *)
-module fiesta.Strings
+module Fiesta.Strings
 
 /// Returns 's' as a string prefixed with spaces so that the result is at least
 /// 'width' characters long.

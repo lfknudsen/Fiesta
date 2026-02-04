@@ -1,4 +1,4 @@
-module fiesta.Assertions
+module Fiesta.Assertions
 
 open State
 
