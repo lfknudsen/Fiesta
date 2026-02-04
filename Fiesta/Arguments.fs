@@ -51,7 +51,7 @@ let rec _printParameters (parameters: ('a * 'b * 'c * 'd * 'e) list) =
     | [] -> ()
     | (alias, command, _, _, description) :: tail ->
         System.Console.WriteLine(
-            "-" + string alias + "\n" + "--" + string command + ":\t\t" + description
+            "-" + string alias + "\n" + "--" + string command + ":\t\t" + string description
         )
 
         _printParameters tail
