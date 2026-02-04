@@ -1,7 +1,7 @@
 module Fiesta.Arguments
 
 /// Struct for holding command-line argument information.
-type Config() =
+type public Config() =
     class
         let mutable _continueOnFailure = true
         let mutable _verbose = true
@@ -31,7 +31,7 @@ type Config() =
             this
     end
 
-let parameters (config: Config) =
+let private parameters (config: Config) =
     [ ('c', "continue", config.setContinue, true, "Continue when assertions fail.")
       ('b',
        "break",
@@ -46,7 +46,7 @@ let parameters (config: Config) =
        true,
        "Print a list of the failed test cases at the end.") ]
 
-let rec _printParameters (parameters: ('a * 'b * 'c * 'd * 'e) list) =
+let rec private _printParameters (parameters: ('a * 'b * 'c * 'd * 'e) list) =
     match parameters with
     | [] -> ()
     | (alias, command, _, _, description) :: tail ->
@@ -56,14 +56,14 @@ let rec _printParameters (parameters: ('a * 'b * 'c * 'd * 'e) list) =
 
         _printParameters tail
 
-let printHelp config =
+let private printHelp config =
     System.Console.WriteLine("Command line arguments:\n")
     _printParameters (parameters config)
     config
 
 
 /// Parse command-line arguments and return the result as a Config struct.
-let rec _parseArgs args config : Config =
+let rec private _parseArgs args config : Config =
     match args with
     | [] -> config
     | head :: tail ->
@@ -81,8 +81,8 @@ let rec _parseArgs args config : Config =
         | "-f"
         | "--failures" -> _parseArgs tail (config.setShowOnlyFailures true)
         | "-h"
-        | "--help" -> printHelp config
-        | _ -> _parseArgs tail config
+        | "--help"
+        | _ -> printHelp config
 
 /// Parse command-line arguments and return the result as a Config struct.
-let parseArgs args = _parseArgs args (Config())
+let public parseArgs args = _parseArgs args (Config())
