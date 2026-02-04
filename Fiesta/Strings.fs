@@ -3,7 +3,7 @@ module Fiesta.Strings
 
 /// Returns 's' as a string prefixed with spaces so that the result is at least
 /// 'width' characters long.
-let prefixSpace s (width: int) =
+let internal prefixSpace s (width: int) =
     let str = string s
 
     if width <= 0 || str.Length >= width then
@@ -13,7 +13,7 @@ let prefixSpace s (width: int) =
         let prefix = String.init diff (fun _ -> " ")
         prefix + str
 
-let rec _formatList lst delimiter =
+let rec private _formatList lst delimiter =
     match lst with
     | [] -> ""
     | [ head ] -> string head
@@ -23,7 +23,7 @@ let rec _formatList lst delimiter =
 /// Prints the full contents of a list.
 /// 'delimiter' refers to the string that will be placed in-between elements,
 /// such as ", " or "\n".
-let formatList lst delimiter =
+let internal formatList lst delimiter =
     match lst with
     | [] -> "[]"
     | [ head ] -> "[" + string head + "]"
